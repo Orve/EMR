@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { analyzeEmotion } from './utils/openai'
 import type { EmotionScore } from './utils/openai'
 
-function App() {
+const App: React.FC = () => {
   const [text, setText] = useState('')
   const [result, setResult] = useState<EmotionScore | null>(null)
 
@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="max-w-xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">🎬 感情分析テスト</h1>
+      <h1 className="text-2xl font-bold mb-4">感情分析テスト</h1>
 
       <textarea
         className="w-full h-32 p-2 border rounded"

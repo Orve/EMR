@@ -1,4 +1,11 @@
 {
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "module": "esnext",
+    "types": ["jest", "@testing-library/jest-dom", "@testing-library/react", "node"]
+  },
+  "include": ["src"],
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
