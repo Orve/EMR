@@ -1,30 +1,29 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# EMR
 
-Currently, two official plugins are available:
+# 🎬 映画レビュー × 感情分析アプリ（React + TypeScript 個人開発課題）
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✅ プロジェクト概要
 
-## Expanding the ESLint configuration
+- **目的**：映画レビューを投稿すると、OpenAI API（GPT）で感情分析され、グラフで可視化される。
+- **対象ユーザー**：映画好き・感情表現を言語化したい人・AI活用に興味がある人。
+- **開発背景**：感性・感情・言語化に興味があり、自分の趣味嗜好に合う形でAIを活用したアプリを作る。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧱 技術構成（使用技術）
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+| 分類         | 技術                            | 補足                                               |
+|--------------|----------------------------------|----------------------------------------------------|
+| フロントエンド | React + TypeScript              | 課題指定で必須                                     |
+| UI            | Tailwind CSS                    | 使用経験あり     |
+| 状態管理     | Zustand                         | 軽量・わかりやすく、Reactとの親和性◎               |
+| 認証         | Firebase Auth                   | Googleログインなど簡単に導入可能                   |
+| DB           | Firebase Firestore              | 柔軟なNoSQL構造・サーバー不要                      |
+| AI連携       | OpenAI API（GPT-4 / 3.5）       | 感情分析・要約などに使用                           |
+| デプロイ     | Vercel または Netlify           | GitHub連携・環境変数管理が簡単                     |
+
+---
 
 ## 🖼️ 画面構成（予定）
 
@@ -60,12 +59,9 @@ firebase.ts
 .env
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🧠 感情分析プロンプト（例）
 
 以下の映画レビュー文から、以下の感情について0〜100でスコアを出してください：
 ・喜び・怒り・哀しみ・驚き・恐れ
@@ -92,3 +88,4 @@ import reactDom from 'eslint-plugin-react-dom'
 - Reactベースで最小構成に抑えつつ、AI×感情×UIの要素を融合できる
 - Tailwindでデザイン性を担保しつつ、Zustandでコードも美しく管理
 - GPTによる分析内容は文章力・読解力の証明にもなり、ポートフォリオで差別化可能
+=======
