@@ -1,93 +1,69 @@
-# EMR
+# React + TypeScript + Vite
 
-# 🎬 映画レビュー × 感情分析アプリ（React + TypeScript 個人開発課題）
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## ✅ プロジェクト概要
+Currently, two official plugins are available:
 
-- **目的**：映画レビューを投稿すると、OpenAI API（GPT）で感情分析され、グラフで可視化される。
-- **対象ユーザー**：映画好き・感情表現を言語化したい人・AI活用に興味がある人。
-- **開発背景**：感性・感情・言語化に興味があり、自分の趣味嗜好に合う形でAIを活用したアプリを作る。
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
----
+## Expanding the ESLint configuration
 
-## 🧱 技術構成（使用技術）
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-| 分類         | 技術                            | 補足                                               |
-|--------------|----------------------------------|----------------------------------------------------|
-| フロントエンド | React + TypeScript              | 課題指定で必須                                     |
-| UI            | Tailwind CSS                    | 使用経験あり     |
-| 状態管理     | Zustand                         | 軽量・わかりやすく、Reactとの親和性◎               |
-| 認証         | Firebase Auth                   | Googleログインなど簡単に導入可能                   |
-| DB           | Firebase Firestore              | 柔軟なNoSQL構造・サーバー不要                      |
-| AI連携       | OpenAI API（GPT-4 / 3.5）       | 感情分析・要約などに使用                           |
-| デプロイ     | Vercel または Netlify           | GitHub連携・環境変数管理が簡単                     |
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
----
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-## 🖼️ 画面構成（予定）
-
-- ホーム（映画一覧＋レビュー件数）
-- 映画詳細／レビュー投稿ページ
-- 感情分析結果ページ（グラフ表示）
-- 自分の投稿履歴ページ
-- 絞り込み検索／タグ機能（フェーズ2以降）
-
----
-
-## 📁 ディレクトリ構成（仮）
-
-```
-src/
-├── assets/
-├── components/
-│   └── MovieCard.tsx
-│   └── ReviewForm.tsx
-│   └── EmotionChart.tsx
-├── features/
-│   └── reviews/
-│       ├── reviewSlice.ts (zustand)
-│       └── reviewService.ts (firebase連携)
-├── pages/
-│   └── Home.tsx
-│   └── ReviewDetail.tsx
-├── utils/
-│   └── openai.ts (GPT API処理)
-├── types/
-│   └── review.ts
-├── App.tsx
-├── main.tsx
-firebase.ts
-.env
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
----
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 🧠 感情分析プロンプト（例）
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
-以下の映画レビュー文から、以下の感情について0〜100でスコアを出してください：
-・喜び・怒り・哀しみ・驚き・恐れ
-その理由を200文字以内で解説してください。
-
-【レビュー文】
-終盤の展開が胸を打った。自分の人生と重ねて泣いてしまった。
-```
-
----
-
-## 🔧 MVPステップ
-
-1. 映画一覧表示（モックでも可）
-2. 投稿フォーム（タイトル・テキスト・星）
-3. GPT API接続 → 感情スコア取得
-4. Zustandで状態管理／Firestoreに保存
-5. EmotionChartで可視化（Rechartsなど）
-
----
-
-## 🌈 備考・この構成の強み
-
-- Reactベースで最小構成に抑えつつ、AI×感情×UIの要素を融合できる
-- Tailwindでデザイン性を担保しつつ、Zustandでコードも美しく管理
-- GPTによる分析内容は文章力・読解力の証明にもなり、ポートフォリオで差別化可能
-
