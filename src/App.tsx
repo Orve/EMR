@@ -1,11 +1,32 @@
 import React, { useState } from 'react'
 import { analyzeEmotion } from './utils/openai'
 import type { EmotionScore } from './utils/openai'
+import { db } from './firebase'
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 
 const App: React.FC = () => {
   const [text, setText] = useState('')
   const [result, setResult] = useState<EmotionScore | null>(null)
 
+  const handleSaveReview = async () => {
+  try {
+    await addDoc(collection(db, 'reviews'), {
+      text,
+      timestamp: serverTimestamp(),
+      emotionScore: result || {
+        joy: 0,
+        anger: 0,
+        sadness: 0,
+        surprise: 0,
+        fear: 0,
+      },
+    })
+    alert('Firestoreに保存できたよ！✨')
+  } catch (e) {
+    console.error('保存エラー:', e)
+    alert('保存に失敗しちゃった💦')
+  }
+}
   const handleAnalyze = async () => {
     try {
       const emotion = await analyzeEmotion(text)
@@ -37,6 +58,13 @@ const App: React.FC = () => {
         <div className="mt-4 bg-gray-100 p-4 rounded">
           <h2 className="font-semibold">感情スコア：</h2>
           <pre>{JSON.stringify(result, null, 2)}</pre>
+
+          <button
+            className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            onClick={handleSaveReview}
+          >
+            Firestoreに保存！
+          </button>
         </div>
       )}
     </div>
@@ -44,3 +72,4 @@ const App: React.FC = () => {
 }
 
 export default App
+
