@@ -1,0 +1,33 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:20.5  # Node.js公式CircleCIイメージ
+    working_directory: ~/project
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - node-modules-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: node-modules-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: Run Vitest
+          command: npm run test
+
+workflows:
+  version: 2
+  test-flow:
+    jobs:
+      - test
