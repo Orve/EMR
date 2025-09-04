@@ -1,3 +1,5 @@
+console.log('✅ openai.ts loaded!')
+
 // src/utils/openai.ts
 export type EmotionScore = {
   joy: number
@@ -6,8 +8,8 @@ export type EmotionScore = {
   surprise: number
   fear: number
 }
-
 export async function analyzeEmotion(text: string): Promise<EmotionScore> {
+  console.log('🧠 analyzeEmotion called with text:', text)
   const systemPrompt = `
   あなたは映画レビューから感情を数値化するAIです。
   以下の5感情（喜び、怒り、悲しみ、驚き、恐れ）を0〜100の数値で評価し、次の形式で出力してください：
@@ -20,6 +22,11 @@ export async function analyzeEmotion(text: string): Promise<EmotionScore> {
     "fear": 数値
   }
   `;
+  console.log('🔑 APIキー（確認用）:', import.meta.env.VITE_OPENAI_API_KEY)
+
+  if (!import.meta.env.VITE_OPENAI_API_KEY) {
+    throw new Error('🚨 VITE_OPENAI_API_KEY が undefined です！.env の読み込みを確認してね！')
+  }
 
   const response = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
