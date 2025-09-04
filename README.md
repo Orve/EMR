@@ -35,7 +35,7 @@ VITE_OPENAI_API_KEY=your_key_here
 
 ---
 
-## ✅ 現在の実装状況（2025-09-03）
+## ✅ 現在の実装状況（2025-09-04）
 
 - [x] 感情スコアAPI連携（OpenAI）
 - [x] フォームUI作成（テキスト入力 / 分析ボタン / 結果表示）
@@ -43,10 +43,18 @@ VITE_OPENAI_API_KEY=your_key_here
 - [x] Vitest動作確認 & `setupTests.ts` 設置
 - [x] テストパス ✅
 - [x] Vite + TypeScript + Tailwind構成でアプリ構築済
-- [ ] Firebase 保存機能
+- [x] Firebase 保存機能
 - [ ] Recharts 可視化
-- [ ] GitHub ActionsによるCIパイプライン
+- [x] GitHub ActionsによるCIパイプライン
 - [ ] 本番デプロイ（Vercel or Firebase Hosting）
+
+---
+
+| フェーズ             | 内容                           |
+| ---------------- | ---------------------------- |
+| **Sprint 1（現在）** | 感情分析 → Firestore保存までのベース機能完成 |
+| **Sprint 2**     | UI整備・コンポーネント分離・グラフ表示などUX強化   |
+| **Sprint 3**     | 認証機能・履歴管理・デプロイ＆README整備      |
 
 ---
 
