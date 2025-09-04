@@ -6,9 +6,11 @@ import EmotionForm from './components/EmotionForm'
 import EmotionResult from './components/EmotionResult'
 
 const App: React.FC = () => {
+  console.log('ENV KEY:', import.meta.env.VITE_OPENAI_API_KEY)
   const [text, setText] = useState('')
   const [result, setResult] = useState<EmotionScore | null>(null)
 
+<<<<<<< HEAD
   const handleAnalyze = async () => {
     try {
       const emotion = await analyzeEmotion(text)
@@ -16,7 +18,38 @@ const App: React.FC = () => {
     } catch (err) {
       console.error('分析エラー', err)
     }
+=======
+  const handleSaveReview = async () => {
+  try {
+    await addDoc(collection(db, 'reviews'), {
+      text,
+      timestamp: serverTimestamp(),
+      emotionScore: result || {
+        joy: 0,
+        anger: 0,
+        sadness: 0,
+        surprise: 0,
+        fear: 0,
+      },
+    })
+    alert('Firestoreに保存できたよ！✨')
+  } catch (e) {
+    console.error('保存エラー:', e)
+    alert('保存に失敗しちゃった💦')
   }
+}
+const handleAnalyze = async () => {
+  try {
+    console.log('🚀 handleAnalyze START')
+    const emotion = await analyzeEmotion(text)
+    console.log('✅ analyzeEmotion response', emotion)
+    setResult(emotion)
+  } catch (err) {
+    console.error('🔥 analyzeEmotion ERROR', err)
+>>>>>>> main
+  }
+}
+
 
   const handleSaveReview = async () => {
     try {
