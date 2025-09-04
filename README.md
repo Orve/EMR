@@ -55,10 +55,18 @@ firebase.ts
 - [x] 初期テストファイル作成（App.tsx → `感情分析テスト` が表示される）
 - [x] Vitest動作確認 & `setupTests.ts` 設置
 - [x] Vite + TypeScript + Tailwind構成でアプリ構築済
-- [ ] Firebase 保存機能
+- [x] Firebase 保存機能
 - [ ] Recharts 可視化
-- [ ] GitHub ActionsによるCIパイプライン
+- [x] GitHub ActionsによるCIパイプライン
 - [ ] 本番デプロイ（Vercel or Firebase Hosting）
+
+---
+
+| フェーズ             | 内容                           |
+| ---------------- | ---------------------------- |
+| **Sprint 1（現在）** | 感情分析 → Firestore保存までのベース機能完成 |
+| **Sprint 2**     | UI整備・コンポーネント分離・グラフ表示などUX強化   |
+| **Sprint 3**     | 認証機能・履歴管理・デプロイ＆README整備      |
 
 ---
 
