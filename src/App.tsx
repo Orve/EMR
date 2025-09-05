@@ -7,7 +7,6 @@ import EmotionResult from './components/EmotionResult'
 import type { EmotionScore } from './utils/openai'
 
 const App: React.FC = () => {
-  console.log('ENV KEY:', import.meta.env.VITE_OPENAI_API_KEY)
   const [text, setText] = useState('')
   const [result, setResult] = useState<EmotionScore | null>(null)
 
@@ -15,8 +14,9 @@ const App: React.FC = () => {
     try {
       const emotion = await analyzeEmotion(text)
       setResult(emotion)
+      setText('') // テキストクリア
     } catch (err) {
-      console.error('分析エラー', err)
+      console.error('analyzeEmotion ERROR', err)
     }
   }
 
@@ -25,22 +25,25 @@ const App: React.FC = () => {
       await addDoc(collection(db, 'reviews'), {
         text,
         timestamp: serverTimestamp(),
-        emotionScore: result,
+        emotionScore: result ?? { joy: 0, anger: 0, sadness: 0, surprise: 0, fear: 0 },
       })
       alert('Firestoreに保存できたよ！✨')
     } catch (e) {
-      console.error('保存エラー:', e)
       alert('保存に失敗しちゃった💦')
     }
   }
 
   return (
-    <div className="max-w-xl mx-auto p-6 space-y-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800">感情分析ツール</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+      <div className="bg-gray-800 p-6 rounded shadow-md w-full max-w-xl">
+        <h1 className="text-2xl font-bold mb-4">感情分析テスト</h1>
 
-      <EmotionForm text={text} onTextChange={setText} onAnalyze={handleAnalyze} />
+        <EmotionForm text={text} setText={setText} onAnalyze={handleAnalyze} />
 
-      {result && <EmotionResult result={result} onSave={handleSaveReview} />}
+        {result && (
+          <EmotionResult result={result} onSave={handleSaveReview} />
+        )}
+      </div>
     </div>
   )
 }
