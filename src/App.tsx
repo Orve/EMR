@@ -1,9 +1,11 @@
 import EmotionChart from './EmotionChart'
 import React, { useState } from 'react'
 import { analyzeEmotion } from './utils/openai'
-import type { EmotionScore } from './utils/openai'
 import { db } from './firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import EmotionForm from './components/EmotionForm'
+import EmotionResult from './components/EmotionResult'
+import type { EmotionScore } from './utils/openai'
 
 const ErrorBoundary: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   try {
@@ -17,7 +19,6 @@ const ErrorBoundary: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 const App: React.FC = () => {
   const [text, setText] = useState('')
   const [result, setResult] = useState<EmotionScore | null>(null)
-
   const handleSaveReview = async () => {
     try {
       await addDoc(collection(db, 'reviews'), {
