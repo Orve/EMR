@@ -3,5 +3,5 @@ import App from '../App'
 
 test('renders main heading', () => {
   render(<App />)
-  expect(screen.getByText(/感情分析テスト/i)).toBeInTheDocument()
+  expect(screen.getByText(/感情分析ツール/i)).toBeInTheDocument()
 })
