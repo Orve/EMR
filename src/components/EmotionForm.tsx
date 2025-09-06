@@ -2,13 +2,22 @@ import React from 'react'
 
 interface Props {
   text: string
+  title: string
   setText: (value: string) => void
+  setTitle: (title: string) => void
   onAnalyze: () => void
 }
 
-const EmotionForm: React.FC<Props> = ({ text, setText, onAnalyze }) => {
+const EmotionForm: React.FC<Props> = ({ text, title, setText, setTitle, onAnalyze }) => {
   return (
     <>
+      <input
+        type="text"
+        className="w-full p-2 border rounded text-black dark:text-white dark:bg-gray-700 mb-2"
+        placeholder="映画タイトルを入力してね"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
       <textarea
         className="w-full h-32 p-2 border rounded text-black dark:text-white dark:bg-gray-700"
         placeholder="映画の感想を書いてね"
