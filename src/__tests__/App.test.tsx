@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { vi } from 'vitest'
 
@@ -8,7 +9,6 @@ vi.mock('../stores/reviewStore', () => ({
     result: null,
     lastAnalyzedText: 'テスト用のテキスト',
     setText: vi.fn(),
-    setTitle: vi.fn(),
     setResult: vi.fn(),
     setLastAnalyzedText: vi.fn(),
     reset: vi.fn(),
@@ -16,6 +16,10 @@ vi.mock('../stores/reviewStore', () => ({
 }))
 
 test('renders main heading', () => {
-  render(<App />)
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  )
   expect(screen.getByText(/感情分析テスト/i)).toBeInTheDocument()
 })
