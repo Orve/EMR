@@ -3,12 +3,11 @@
     "jsx": "react-jsx",
     "esModuleInterop": true,
     "module": "esnext",
-    "types": ["jest", "@testing-library/jest-dom", "@testing-library/react", "node"]
+    "types": ["jest", "@testing-library/jest-dom", "@testing-library/react", "node"],
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "baseUrl": "./"
   },
-  "include": ["src"],
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "include": ["src"]
 }
