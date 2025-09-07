@@ -3,6 +3,13 @@ import { MemoryRouter } from 'react-router-dom'
 import App from '../App'
 import { vi } from 'vitest'
 
+vi.mock('../firebase', () => ({
+  auth: {
+    signInAnonymously: vi.fn(() => Promise.resolve({ user: { uid: 'test-user-id' } })),
+  },
+  db: {},
+}))
+
 vi.mock('../stores/reviewStore', () => ({
   useReviewStore: vi.fn(() => ({
     text: '',
