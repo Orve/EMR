@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState }  from 'react'
 
 interface Props {
   text: string
@@ -9,6 +9,22 @@ interface Props {
 }
 
 const EmotionForm: React.FC<Props> = ({ text, title, setText, setTitle, onAnalyze }) => {
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = () => {
+    // ✅ バリデーションチェック
+    if (title.trim().length < 2) {
+      setError('🎬 映画タイトルは2文字以上で入力してください')
+      return
+    }
+    if (text.trim().length < 20) {
+      setError('📝 レビュー本文は20文字以上で入力してください')
+      return
+    }
+
+    setError(null) // エラークリア
+    onAnalyze() // 分析処理へ
+  }
   return (
     <>
       <input
@@ -24,6 +40,12 @@ const EmotionForm: React.FC<Props> = ({ text, title, setText, setTitle, onAnalyz
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <p className="text-sm text-gray-400 text-right">
+        {text.length} / 1000文字
+      </p>
+
+      {error && <p className="text-red-400 mt-2">{error}</p>}
+
       <button
         className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
         onClick={onAnalyze}
