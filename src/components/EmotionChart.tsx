@@ -24,8 +24,8 @@ const emotionColors: Record<string, string> = {
     <div className="w-full h-64">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart data={chartData}>
-          <XAxis dataKey="name" stroke="#fff" />
-          <YAxis domain={[0, 100]} stroke="#fff" />
+          <XAxis dataKey="name" stroke="#000" />
+          <YAxis domain={[0, 100]} stroke="#000" />
           <Tooltip />
           <Bar dataKey="value">
             {chartData.map((entry, index) => (
