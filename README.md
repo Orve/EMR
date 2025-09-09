@@ -1,126 +1,111 @@
-# 🎬 EMR — Emotion Movie Review
+# 🎬 EMR - Emotion Movie Review App
 
-映画レビュー × 感情分析 × グラフ可視化  
-**AIと感性をつなぐ、パーソナルレビューアプリ**
+映画レビューを投稿すると、OpenAI（GPT-3.5）を用いて5つの感情（喜び・怒り・悲しみ・驚き・恐れ）を分析し、グラフで可視化して保存できるアプリです。
 
----
+## 🌟 特徴
 
-## ✅ プロジェクト概要
-
-| 項目         | 内容                                                                 |
-|--------------|----------------------------------------------------------------------|
-| 🎯 目的       | 映画の感想文からAIが感情スコアを解析・数値化し、グラフで可視化            |
-| 🧑‍💻 対象       | 映画好き／感情表現を深めたい人／AI活用に関心がある全ユーザー             |
-| 💡 開発背景     | 感性・言語化・自己理解への探求から生まれた個人開発プロジェクト             |
+- ✨ 映画レビュー × 感情分析 × グラフ可視化
+- 🔐 Firebase匿名認証により個人情報不要で即利用可能
+- 💾 自分のレビュー履歴をローカルで保持・閲覧可能
+- 📊 感情スコアをRechartsで直感的に表示
+- 🧠 Zustandで状態管理、TailwindでスタイリッシュなUI
+- 🚀 Vercelにてデプロイ・CI連携済
 
 ---
 
-## 📦 技術スタック
+## 🖼 デモ
 
-| 分類          | 使用技術                                     |
-|---------------|----------------------------------------------|
-| フロントエンド   | React 19 / TypeScript / Vite                 |
-| UIデザイン     | Tailwind CSS                                 |
-| 状態管理       | Zustand                                      |
-| 感情分析API     | OpenAI GPT-3.5 Turbo                         |
-| データベース     | Firebase Firestore（レビュー保存）           |
-| テスト        | Vitest / React Testing Library               |
-| CI/CD        | GitHub Actions（CI構築済）                   |
-| 本番環境       | Vercel or Firebase Hosting（検討中）         |
+**本番環境URL**  
+🔗 https://emr-ebon.vercel.app/
+
+![スクリーンショット1](./public/screenshot_1.png)
+![スクリーンショット2](./public/screenshot_2.png)
 
 ---
 
-## 🗂️ ディレクトリ構成
-```
-src/
-├── assets/
-├── components/
-│ ├── EmotionChart.tsx
-│ ├── EmotionForm.tsx
-│ └── EmotionResult.tsx
-├── features/
-│ └── reviews/
-│ ├── reviewSlice.ts
-│ └── reviewService.ts
-├── pages/
-│ ├── Home.tsx
-│ └── ReviewDetail.tsx
-├── utils/
-│ └── openai.ts
-├── types/
-│ └── review.ts
-├── App.tsx
-├── main.tsx
-firebase.ts
-.env
-```
+## 🔧 使用技術
+
+| カテゴリ        | 技術                          |
+|----------------|-------------------------------|
+| フロントエンド  | React 19 / Vite / TypeScript |
+| UI            | Tailwind CSS                 |
+| 状態管理       | Zustand                      |
+| データベース    | Firebase Firestore           |
+| 認証           | Firebase Authentication（匿名） |
+| 感情分析API    | OpenAI（GPT-3.5 Turbo）      |
+| グラフ         | Recharts                     |
+| テスト         | Vitest + Testing Library     |
+| デプロイ       | Vercel                       |
 
 ---
 
-## 🚧 実装状況（2025-09-03）
+## 📝 機能一覧
 
-- ✅ 感情スコアAPI連携（OpenAI）
-- ✅ 入力フォームUI（テキスト入力／分析ボタン）
-- ✅ グラフ表示（Recharts・色分け対応）
-- ✅ Firestore保存機能
-- ✅ CIパイプライン（GitHub Actions）
-- ✅ テスト導入（Vitest）
-- ⏳ 認証／レビュー履歴／デプロイ準備中…
-
----
-
-## 🗓️ スプリント計画
-
-| フェーズ     | 内容                                              |
-|--------------|---------------------------------------------------|
-| Sprint 1     | 感情分析 → Firestore保存までのベース機能完成            |
-| Sprint 2     | UI整備・コンポーネント分離・Rechartsでのグラフ可視化     |
-| Sprint 3（今）| Firebase Authによる認証機能／履歴管理／README整備・デプロイ |
+- [x] 映画タイトルとレビューの入力
+- [x] OpenAIによる感情分析（JSONフォーマット）
+- [x] レビュー＋スコアをFirestoreに保存
+- [x] レーダーチャートで感情を視覚化
+- [x] 履歴一覧表示（ログイン不要、匿名UIDで管理）
+- [x] バリデーション（文字数制限・未入力防止）
+- [x] Light/Darkモード対応（自動切替）
+- [ ] レビュー削除・編集（今後対応予定）
 
 ---
 
-## 💻 実行コマンド
+## 🛠 開発環境セットアップ
 
 ```bash
-# 開発サーバー起動
+git clone https://github.com/Orve/EMR.git
+cd EMR
+npm install
+cp .env.example .env   # ← 環境変数を手元で設定してください
 npm run dev
+🔐 .env について
+開発に必要な環境変数は .env.example を参考に .env を作成してください。
 
-# ビルド
-npm run build
+env
+コードをコピーする
+# Firebase
+VITE_FIREBASE_API_KEY=your-api-key
+VITE_FIREBASE_AUTH_DOMAIN=your-app.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your-project-id
+...
 
-# テスト実行
+# OpenAI
+VITE_OPENAI_API_KEY=your-openai-key
+.env は .gitignore に含まれており、Gitには含めないようにしてください。
+
+📁 ディレクトリ構成（主要）
+txt
+コードをコピーする
+src/
+├── components/       # UIコンポーネント
+├── pages/            # ルーティングページ
+├── stores/           # Zustand状態管理
+├── utils/            # APIラッパーなど
+├── services/         # Firebase用クエリ管理
+├── assets/           # 画像・アイコン等
+🧪 テスト
+bash
+コードをコピーする
 npm run test
+🗺 今後の予定（フェーズ4以降）
+ 感情のフィルタリング機能
 
-# ESLintチェック
-npm run lint
-```
+ 類似レビューの提案（AI補助）
 
-## 🛠 今後の実装予定
- レーダーチャートによる感情スコアの可視化（Recharts）
+ Googleログイン拡張（任意）
 
- Firestoreにユーザー別のレビュー履歴を保存
+ レビュー編集・削除
 
- Zustandによる状態管理の統合（ユーザー／レビュー）
+ モバイルUI最適化
 
- Firebase Authの導入（匿名 or メール認証）
+🧠 作者について
+野口 瑠偉（Rui Noguchi）
+フロントエンド／業務アプリ開発経験あり。趣味開発でもAI活用・UIデザイン・体験設計を大事にしています。
 
- VercelまたはFirebase Hostingへの本番デプロイ
+📫 Mail: laboruy@gmail.com
+🧠 使用技術: React / PHP / Firebase / Tailwind / Zustand など
 
- .envをGitHub SecretsでCI/CD連携
-
-## 🌈 特徴と強み
-🎨 Tailwind CSSでクリーンかつ感性的なデザイン構築
-
-🤖 OpenAIによる高度な自然言語処理・感情分析
-
-🔧 ZustandやViteを活用した高速でモダンな開発体験
-
-📊 感情スコアを視覚化することで、自己理解や表現力の向上に寄与
-
-🧠 "言語化された感情" を通じた新しい映画の楽しみ方を提案
-
-## 🖼 スクリーンショット（任意）
-※ UI完成後に掲載予定（Tailwind構成済み）
-
-## 📝 ライセンス
-MIT
+📝 ライセンス
+MIT License
