@@ -16,10 +16,10 @@ const EmotionResult: React.FC<Props> = ({ result, onSave }) => {
       <p className="text-lg font-semibold text-black dark:text-white">
         🎬 {lastAnalyzedTitle}
       </p>
-      <p className="text-lg text-white">
+      <p className="text-lg text-black dark:text-white">
         「{lastAnalyzedText}」
       </p>
-      <p className="mt-2 text-sm italic text-gray-300">
+      <p className="mt-2 text-sm italic text-black">
         <h2 className="font-semibold">感情スコア：</h2>
       </p>
       <EmotionChart data={result} />
