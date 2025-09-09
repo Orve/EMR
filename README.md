@@ -17,9 +17,10 @@
 
 **本番環境URL**  
 🔗 https://emr-ebon.vercel.app/
+<img width="1269" height="911" alt="brave_screenshot_emr-ebon vercel app (2)" src="https://github.com/user-attachments/assets/923e287d-0110-4424-94b3-79a28116fdca" />
 
-![スクリーンショット1](./public/screenshot_1.png)
-![スクリーンショット2](./public/screenshot_2.png)
+<img width="1253" height="513" alt="brave_screenshot_emr-ebon vercel app (3)" src="https://github.com/user-attachments/assets/3c1b8b3f-0b3b-4d27-adcd-d40c91618f1a" />
+
 
 ---
 
@@ -60,11 +61,11 @@ cd EMR
 npm install
 cp .env.example .env   # ← 環境変数を手元で設定してください
 npm run dev
+```
+
 🔐 .env について
 開発に必要な環境変数は .env.example を参考に .env を作成してください。
-
-env
-コードをコピーする
+```
 # Firebase
 VITE_FIREBASE_API_KEY=your-api-key
 VITE_FIREBASE_AUTH_DOMAIN=your-app.firebaseapp.com
@@ -74,10 +75,10 @@ VITE_FIREBASE_PROJECT_ID=your-project-id
 # OpenAI
 VITE_OPENAI_API_KEY=your-openai-key
 .env は .gitignore に含まれており、Gitには含めないようにしてください。
+```
 
 📁 ディレクトリ構成（主要）
-txt
-コードをコピーする
+```
 src/
 ├── components/       # UIコンポーネント
 ├── pages/            # ルーティングページ
@@ -86,9 +87,9 @@ src/
 ├── services/         # Firebase用クエリ管理
 ├── assets/           # 画像・アイコン等
 🧪 テスト
-bash
-コードをコピーする
+
 npm run test
+```
 🗺 今後の予定（フェーズ4以降）
  感情のフィルタリング機能
 
