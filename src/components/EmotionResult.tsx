@@ -13,7 +13,7 @@ const EmotionResult: React.FC<Props> = ({ result, onSave }) => {
 
   return (
     <div className="mt-4 bg-white dark:bg-gray-700 text-black dark:text-white p-4 rounded">
-      <p className="text-lg font-semibold text-white">
+      <p className="text-lg font-semibold text-black dark:text-white">
         🎬 {lastAnalyzedTitle}
       </p>
       <p className="text-lg text-white">

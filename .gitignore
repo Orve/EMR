@@ -23,6 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 .env
-.env copy
 emotion-movie-review-app/.env
 emotion-movie-review-app/.env.local 
