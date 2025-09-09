@@ -102,11 +102,13 @@ npm run test
  モバイルUI最適化
 
 🧠 作者について
+
 野口 瑠偉（Rui Noguchi）
+
 フロントエンド／業務アプリ開発経験あり。趣味開発でもAI活用・UIデザイン・体験設計を大事にしています。
 
 📫 Mail: laboruy@gmail.com
+
 🧠 使用技術: React / PHP / Firebase / Tailwind / Zustand など
 
-📝 ライセンス
-MIT License
+📝 ライセンス: MIT License
